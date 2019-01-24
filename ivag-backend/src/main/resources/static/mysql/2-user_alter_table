@@ -1,0 +1,5 @@
+ALTER TABLE `emag`.`users`
+CHANGE COLUMN `alias` `alias` VARCHAR(45) NULL ,
+CHANGE COLUMN `phone` `phone` VARCHAR(45) NULL ,
+CHANGE COLUMN `profile_url` `profile_url` VARCHAR(100) NULL ,
+CHANGE COLUMN `gender` `gender` VARCHAR(45) NULL ;

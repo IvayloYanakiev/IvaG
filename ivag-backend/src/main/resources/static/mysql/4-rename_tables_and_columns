@@ -1,0 +1,5 @@
+ALTER TABLE adresses RENAME addresses;
+ALTER TABLE addresses CHANGE reciever_name receiver_name varchar(45);
+ALTER TABLE addresses CHANGE reciever_phone receiver_phone varchar(45);
+ALTER TABLE `emag`.`users`
+DROP COLUMN `alias`;

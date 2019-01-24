@@ -1,0 +1,275 @@
+
+CREATE SCHEMA IF NOT EXISTS `emag` DEFAULT CHARACTER SET utf8 ;
+USE `emag` ;
+CREATE TABLE IF NOT EXISTS `emag`.`users` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `alias` VARCHAR(45) NULL,
+  `phone` VARCHAR(45) NOT NULL,
+  `profile_url` VARCHAR(100) NULL,
+  `gender` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC))
+ENGINE = InnoDB
+AUTO_INCREMENT = 6
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`user_roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `emag`.`user_roles` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `user_id` INT(11) NOT NULL,
+  `role` VARCHAR(45) NOT NULL DEFAULT 'ROLE_USER',
+  PRIMARY KEY (`id`),
+  INDEX `user_id_idx` (`user_id` ASC),
+  CONSTRAINT `user_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `emag`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`cities`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `emag`.`cities` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `emag`.`adresses` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `reciever_name` VARCHAR(45) NOT NULL,
+  `reciever_phone` VARCHAR(45) NOT NULL,
+  `city_id` INT NOT NULL,
+  `street` VARCHAR(50) NOT NULL,
+  `floor` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `city_id_idx` (`city_id` ASC),
+  CONSTRAINT `city_id`
+    FOREIGN KEY (`city_id`)
+    REFERENCES `emag`.`cities` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema emag
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema emag
+-- -----------------------------------------------------
+
+
+CREATE TABLE IF NOT EXISTS `users_adresses` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `adress_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `users_id_idx` (`user_id` ASC),
+  INDEX `address_id_idx` (`adress_id` ASC),
+  CONSTRAINT `userrr`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `emag`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `address_id`
+    FOREIGN KEY (`adress_id`)
+    REFERENCES `emag`.`adresses` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`firms`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `firms` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `bank_name` VARCHAR(45) NOT NULL,
+  `iban` VARCHAR(45) NOT NULL,
+  `city_id` INT NOT NULL,
+  `street` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `city_id_idx` (`city_id` ASC),
+  CONSTRAINT `city_idi`
+    FOREIGN KEY (`city_id`)
+    REFERENCES `emag`.`cities` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`users_firms`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `emag`.`users_firms` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `firm_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_users_has_firms_firms1_idx` (`firm_id` ASC),
+  INDEX `fk_users_has_firms_users1_idx` (`user_id` ASC),
+  CONSTRAINT `user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `emag`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `firm`
+    FOREIGN KEY (`firm_id`)
+    REFERENCES `emag`.`firms` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`main_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `emag`.`main_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `emag`.`type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `main_type_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `main_type_id_idx` (`main_type_id` ASC),
+  CONSTRAINT `main_type_id`
+    FOREIGN KEY (`main_type_id`)
+    REFERENCES `emag`.`main_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`inner_type`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `emag`.`inner_type` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `type_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `inner_type_id_idx` (`type_id` ASC),
+  CONSTRAINT `type_id`
+    FOREIGN KEY (`type_id`)
+    REFERENCES `emag`.`type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`products`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `emag`.`products` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `picture_url` VARCHAR(100) NOT NULL,
+  `price` DOUBLE NOT NULL,
+  `inner_type_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `inner_type_id_idx` (`inner_type_id` ASC),
+  CONSTRAINT `inner_type_id`
+    FOREIGN KEY (`inner_type_id`)
+    REFERENCES `emag`.`inner_type` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`orders`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `emag`.`orders` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` VARCHAR(45) NULL,
+  `date` TIMESTAMP NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`producs_orders`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `products_orders` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `product_id` INT NOT NULL,
+  `order_id` INT NOT NULL,
+  INDEX `fk_products_has_orders_orders1_idx` (`order_id` ASC),
+  INDEX `fk_products_has_orders_products1_idx` (`product_id` ASC),
+  PRIMARY KEY (`id`),
+  CONSTRAINT `product_id`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `emag`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `order_id`
+    FOREIGN KEY (`order_id`)
+    REFERENCES `emag`.`orders` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.``
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `users_products` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `product_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `user_id_idx` (`user_id` ASC),
+  INDEX `product_id_idx` (`product_id` ASC),
+  CONSTRAINT `userr`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `emag`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `product`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `emag`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `emag`.`table1`
+-- -----------------------------------------------------
+
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+

@@ -1,0 +1,14 @@
+ALTER TABLE `emag`.`users_addresses`
+DROP FOREIGN KEY `address_id`,
+DROP FOREIGN KEY `userrr`;
+ALTER TABLE `emag`.`users_addresses`
+ADD CONSTRAINT `address_id`
+  FOREIGN KEY (`address_id`)
+  REFERENCES `emag`.`addresses` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
+ADD CONSTRAINT `userrr`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `emag`.`users` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;

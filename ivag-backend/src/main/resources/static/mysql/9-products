@@ -1,0 +1,8 @@
+ALTER TABLE `emag`.`products`
+DROP FOREIGN KEY `middle_type_id`;
+ALTER TABLE `emag`.`products`
+ADD CONSTRAINT `middle_type_id`
+  FOREIGN KEY (`middle_type_id`)
+  REFERENCES `emag`.`middle_type` (`id`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;

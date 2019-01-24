@@ -1,0 +1,58 @@
+<div class="panel panel-default addProductContainer" ng-controller="addProductController">
+    <div class="panel-heading">Add product</div>
+    <div class="panel-body ">
+
+        <form>
+            <div class="form-group imageContainer">
+                <form>
+                                                     <span ng-click="resetPictureError"
+                                                           class="btn btn-default btn-file form-control">
+                                                Browse…<input accept="image/*" type="file" id="imgInp"
+                                                              class="form-control"
+                                                              file-model="myFile">
+                                                </span>
+                    <img ng-hide="error" id='img-upload'/>
+                </form>
+            </div>
+            <div class="form-group">
+                <label>Name</label>
+                <input ng-model="product.name" type="text" class="form-control" placeholder="Enter name">
+            </div>
+            <div class="form-check">
+                <label>Category</label>
+                <select class="selectpicker form-control" id="selectContainer" ng-model="product.category">
+                    <optgroup ng-repeat="category in categories" label={{category.name}}>
+                        <option ng-value="inner.id" ng-repeat="inner in category.innerCategories">{{inner.name}}
+                        </option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <input ng-model="product.price" type="number" class="form-control" placeholder="Enter price">
+            </div>
+
+            <div class="form-check">
+                <label>Quantity</label>
+                <input ng-model="product.quantity" type="number" class="form-control" placeholder="Enter quantity">
+            </div>
+
+            <div class="form-check">
+                <label>Description</label>
+                <input ng-model="product.description" type="text" class="form-control" placeholder="Enter description">
+            </div>
+
+            <div class="form-check">
+                <label>Discount</label>
+                <input ng-model="product.discount" ng-value="0" type="number" class="form-control" placeholder="Enter discount">
+            </div>
+
+            <button type="submit" ng-click="addProduct()" class="btn btn-primary" id="productButton">Submit</button>
+            <div class="alert alert-danger" role="alert" ng-if="error">
+                {{value}}
+            </div>
+
+        </form>
+
+    </div>
+</div>

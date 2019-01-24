@@ -1,0 +1,123 @@
+<div class="container " ng-controller="productDetailsController">
+    <div class="card">
+        <div class="row">
+            <aside class="col-sm-7">
+                <article class="gallery-wrap">
+                    <div><img id="productPic" src="{{product.pictureURL}}"></div>
+                </article>
+            </aside>
+            <aside class="col-sm-5">
+                <article class="card-body p-5">
+                    <h3 class="title mb-3">{{product.name}}</h3>
+                    <p ng-show="product.discount != 0" class="price-detail-wrap"><span class="price h3 text-warning">
+                        <span class="currency" style="color: darkred">$</span><span style="color: darkred" class="num"><strike>{{product.price}}</strike></span></span>
+                    </p>
+                    <p class="price-detail-wrap"><span class="price h3 text-warning">
+                        <span class="currency">$</span><span class="num">{{getNewProductPrice(product.price, product.discount)}} </span></span>
+                    </p>
+                    <dl class="item-property">
+                        <dt>Description</dt>
+                        <dd><p>{{product.description}}</p></dd>
+                    </dl>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <dt>Quantity: {{product.quantity}}</dt>
+                        </div>
+                    </div>
+                    <hr>
+                    <button ng-click="addToCart(product.id)" type="button"
+                            class="btn btn-default btn-sm btn btn-success">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart
+                    </button>
+                </article>
+            </aside>
+        </div>
+    </div>
+
+    <div class="row commentsContainer">
+        <div dir-paginate="comment in product.comments | itemsPerPage: 3" class="col-sm-8">
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="{{comment.profileUrl}}" class="img-circle avatar productPictureDetails"
+                             alt="user profile image">
+                    </div>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>{{comment.userNames}}</b></a>
+                        </div>
+                        <h6 class="text-muted time">created on {{comment.creatingDate}}</h6>
+                    </div>
+                    <div class="big-icon" id="{{comment.id}}">
+                        {{iterateStars(comment.stars,comment.id)}}
+                    </div>
+                </div>
+                <div class="post-description">
+                    <p>{{comment.value}}</p>
+                    <div class="stats">
+                        <a  class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-up icon"></i>5
+                        </a>
+                        <a  class="btn btn-default stat-item">
+                            <i class="fa fa-thumbs-down icon"></i>1
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <dir-pagination-controls></dir-pagination-controls>
+
+
+    <div class="row ">
+        <div class="col-md-6 reviewContainer">
+            <div class="well well-sm">
+                <div class="text-right">
+                    <a class="btn btn-success btn-green" id="open-review-box">Leave a Review</a>
+                </div>
+
+                <div class="row" id="post-review-box" style="display:none;">
+                    <div class="col-md-12">
+                        <form>
+                            <input id="ratings-hidden" name="rating" type="hidden">
+                            <textarea class="form-control animated" cols="50" id="new-review" name="comment"
+                                      ng-model="comment.value" placeholder="Enter your review here..."
+                                      rows="5"></textarea>
+
+                            <div class="text-right">
+                                <div class="stars">
+                                    <form action="">
+                                        <input class="star star-5" id="star-5" ng-value="5" ng-model="comment.stars"
+                                               type="radio" name="star"/>
+                                        <label class="star star-5" for="star-5"></label>
+                                        <input class="star star-4" ng-value="4" ng-model="comment.stars" id="star-4"
+                                               type="radio" name="star"/>
+                                        <label class="star star-4" for="star-4"></label>
+                                        <input class="star star-3" ng-value="3" ng-model="comment.stars" id="star-3"
+                                               type="radio" name="star"/>
+                                        <label class="star star-3" for="star-3"></label>
+                                        <input class="star star-2" ng-value="2" ng-model="comment.stars" id="star-2"
+                                               type="radio" name="star"/>
+                                        <label class="star star-2" for="star-2"></label>
+                                        <input class="star star-1" ng-value="1" ng-model="comment.stars" id="star-1" type="radio" name="star"/>
+                                        <label class="star star-1" for="star-1"></label>
+                                    </form>
+                                </div>
+                                <button class="btn btn-success btn-large" ng-click="addProductComment()">Add
+                                </button>
+                                <button class="btn btn-danger btn-large" href="#" id="close-review-box">Cancel
+                                </button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

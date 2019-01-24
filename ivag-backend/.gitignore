@@ -1,0 +1,3 @@
+.idea
+/target
+/src/main/java/com/emag/config/SpringJdbcConfig

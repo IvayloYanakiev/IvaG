@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html ng-app="ivag">
+<head>
+    <title>IvaG</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Website for online shopping">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="css/animate.css">
+    <link rel="stylesheet" type="text/css" href="css/slick.css">
+    <link rel="stylesheet" type="text/css" href="css/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="css/cart_responsive.css">
+    <link rel="stylesheet" type="text/css" href="css/cart_styles.css">
+    <link rel="stylesheet" type="text/css" href="css/userPersonalData.css">
+    <link rel="stylesheet" href="css/addProduct.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/productDetails.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/shoppingCart.css">
+
+</head>
+
+<body ng-controller="mainController">
+
+<div class="super_container">
+    <!-- Header -->
+
+    <header class="header">
+
+
+        <!-- Header Main -->
+
+        <div class="header_main">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Logo -->
+                    <div class="col-lg-2 col-sm-3 col-3 order-1">
+                        <div class="logo_container">
+                            <div class="logo"><a ng-href="#/"><img src="./pictures/ivag.png" width="150"/></a></div>
+                        </div>
+                    </div>
+
+                    <!-- Search -->
+                    <div style="padding-top: 5%" class="col-lg-4 col-12 order-lg-2 order-3 text-lg-left text-right">
+                        <div class="header_search">
+                            <div class="header_search_content">
+                                <div> <!--searchedProductController-->
+                                    <div style="position: absolute">
+                                        <input class="form-control" size="70" required="required" type="text"
+                                               ng-model="search" id="searchBox" placeholder="Search for product..">
+                                    </div>
+                                    <button  class="btn btn-primary" style="width: 20%; position: absolute; margin-left: 85%" ng-click="searchProduct()"
+                                    class="btn btn-success btn-block">search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wishlist -->
+                    <div class="col-lg-6 col-9 order-lg-3 order-2 text-lg-left text-right">
+                        <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+
+                            <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                                <div class="wishlist_content" ng-show="isAuthenticated">
+                                    <ul class="standard_dropdown main_nav_dropdown">
+                                        <li class="hassubs" style="margin-left: 20%; margin-top: 3%">
+                                            <a><img src="./pictures/profile.png" alt="" width="20"/> My profile <i class="fa fa-angle-down"></i></a>
+                                            <ul style="width: 100%;">
+                                                <li><a ng-href="#userPersonalData">Update profile</a></li>
+                                                <li><a ng-href="#logout">Log out</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Cart -->
+                            <div class="cart">
+                                <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                    <div class="col d-flex flex-row">
+                                        <div class="top_bar_content ml-auto">
+                                            <div class="top_bar_user">
+                                                <div class="user_icon"></div>
+                                                <div ng-hide="isAuthenticated"><a ng-href="#register"><img id="register_icon"
+                                                                                                           src="https://cdn0.iconfinder.com/data/icons/cosmetic-store/25/Register-512.png"
+                                                                                                           alt=""
+                                                                                                           width="20">Register</a></div>
+                                                <div ng-hide="isAuthenticated"><a ng-href="#login"><img id="login_icon"
+                                                                                                        src="https://image.freepik.com/free-icon/login-symbol_318-9896.jpg"
+                                                                                                        alt="" width="21">Log in</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cart_content">
+                                        <div class="cart_text"><a ng-href="#/shoppingCart">
+                                            <img id="cart_icon" src="./pictures/cart.png" alt="" width="22">Shopping
+                                            cart{{itemsInCart}}</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+
+        <nav class="main_nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+
+                        <div class="main_nav_content d-flex flex-row">
+
+                            <!-- Categories Menu -->
+
+                            <div class="cat_menu_container"  style="border-radius: 7px; ">
+                                <div id="dropdown_container"
+                                     class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cat_burger"><span></span><span></span><span></span></div>
+                                    <div class="cat_menu_text">
+                                        <button id="show_menu_btn" ng-click="showMenu()">Categories</button>
+                                    </div>
+                                </div>
+                                <ul class="cat_menu" id="dropdown_content">
+                                    <li class="hassubs" ng-repeat="category in categories">{{category.name}}
+                                        <img src="https://www.materialui.co/materialIcons/hardware/keyboard_arrow_right_grey_192x192.png"
+                                             alt="" width="20"/>
+                                        <ul>
+                                            <li ng-click="goTo(inner.id)" ng-repeat="inner in category.innerCategories">
+                                                {{inner.name}}
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Main Nav Menu -->
+
+                            <div class="main_nav_menu ml-auto">
+                                <ul class="standard_dropdown main_nav_dropdown">
+                                    <li><a href="#">Offers of the week</a></li>
+                                    <li><a ng-show="isAdmin && isAuthenticated" ng-href="#addProduct">Add Product<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="#info">IvaG info<i class="fas fa-chevron-down"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Menu -->
+        <div class="page_menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+
+                        <div class="page_menu_content">
+
+                            <div class="page_menu_search">
+                                <!--<form action="#">-->
+                                <input type="search" required="required" class="page_menu_search_input"
+                                       placeholder="Search for products...">
+                                <!--</form>-->
+                            </div>
+                            <ul class="page_menu_nav">
+                                <li class="page_menu_item has-children">
+                                    <a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
+                                    <ul class="page_menu_selection">
+                                        <li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
+                                        <li class="page_menu_item has-children">
+                                            <a href="#">Menu Item<i class="fa fa-angle-down"></i></a>
+                                            <ul class="page_menu_selection">
+                                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                    </ul>
+                                </li>
+                                <li class="page_menu_item has-children">
+                                    <a href="#">Featured Brands<i class="fa fa-angle-down"></i></a>
+                                    <ul class="page_menu_selection">
+                                        <li><a href="#">Featured Brands<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                    </ul>
+                                </li>
+                                <li class="page_menu_item has-children">
+                                    <a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
+                                    <ul class="page_menu_selection">
+                                        <li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                    </ul>
+                                </li>
+                                <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
+                                </li>
+                                <li class="page_menu_item"><a href="contact.html">contact<i
+                                        class="fa fa-angle-down"></i></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!--&lt;!&ndash; Banner &ndash;&gt;-->
+    <!--<div class="banner">-->
+    <!--<div class="banner_background"><img src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/cm/15/11/54ffe5266025c-dog1.jpg?crop=1xw:1.0xh;center,top&resize=480:*" alt="" width="100%"></div>-->
+    <!--</div>-->
+
+    <div ng-view></div>
+
+    <div class="newsletter">
+        <div class="characteristics">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Char. Item -->
+                    <div class="col-lg-3 col-md-6 char_col">
+
+                        <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="char_content">
+                                <div class="char_title">
+                                    <img src="https://static1.squarespace.com/static/533361cce4b0f4b356806ce8/53f88ffde4b05c22548eb241/54bada5fe4b06ac2744ddd3f/1421531743605/Online+Icon.png?format=500w"
+                                         alt="" width="50">
+                                    Online is always easier
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Char. Item -->
+                    <div class="col-lg-3 col-md-6 char_col">
+
+                        <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="char_content">
+                                <div class="char_title">
+                                    <img src="https://cdn1.iconfinder.com/data/icons/delivery-logistics-1/512/Logistics-06-256.png"
+                                         width="70" alt="">
+                                    Fast delivery
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Char. Item -->
+                    <div class="col-lg-3 col-md-6 char_col">
+
+                        <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="char_content">
+                                <div class="char_title">
+                                    <img src="https://cdn1.iconfinder.com/data/icons/money-currency-extras/512/Dollar_Return_Arrow-512.png"
+                                         alt="" width="50">
+                                    Return policy
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Char. Item -->
+                    <div class="col-lg-3 col-md-6 char_col">
+
+                        <div class="char_item d-flex flex-row align-items-center justify-content-start">
+                            <div class="char_content">
+                                <div class="char_title">
+                                    <img src="https://cdn2.iconfinder.com/data/icons/app-types-in-grey/512/app_type_catalog_512px_GREY.png"
+                                         alt="" width="50">
+                                    Wide choice of products
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="footer_container"
+                         class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+                        <div class="newsletter_title_container">
+                            <div class="newsletter_icon"><a ng-href="#/"><img src="./pictures/ivag.png" width="150"></a>
+                            </div>
+                            <div class="newsletter_title">Sign up for the latest updates</div>
+                        </div>
+                        <div class="newsletter_content clearfix" ng-controller="subscribeController">
+                            <form class="newsletter_form">
+                                <input ng-model="user.email" type="email" class="newsletter_input"
+                                       required="required" placeholder="Enter your email address">
+                                <button style="border-radius: 7px;" class="newsletter_button" ng-click="subscribe()">Subscribe</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script src="app.js"></script>
+<script src="controllers/addProductController.js"></script>
+<script src="controllers/homeController.js"></script>
+<script src="controllers/innerCategoryProducts.js"></script>
+<script src="controllers/loginController.js"></script>
+<script src="controllers/logoutController.js"></script>
+<script src="controllers/mainController.js"></script>
+<script src="controllers/productDetailsController.js"></script>
+<script src="controllers/registerController.js"></script>
+<script src="controllers/shoppingCartController.js"></script>
+<script src="controllers/subscribeController.js"></script>
+<script src="controllers/userPersonalDataController.js"></script>
+<script src="controllers/checkoutShoppingCartController.js"></script>
+<script src="controllers/searchedProductController.js"></script>
+<script src="bower_components/angularUtils-pagination/dirPagination.js"></script>
+<script src="controllers/activateAccountController.js"></script>
+
+</body>
+
+</html>
+

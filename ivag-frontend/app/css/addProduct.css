@@ -1,0 +1,25 @@
+.addProductContainer{
+    width: 50%;
+    top: 50%;
+    left: 25%;
+    margin-top:20px;
+
+    -webkit-box-shadow: 1px 6px 26px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 6px 26px 3px rgba(0,0,0,0.75);
+    box-shadow: 1px 6px 26px 3px rgba(0,0,0,0.75);
+}
+
+.imageContainer{
+    width:30%;
+   left:35%;
+
+}
+
+#productButton{
+    margin-left: 91%;
+}
+
+#selectContainer{
+    height: 100%;
+    margin-left: auto;
+}

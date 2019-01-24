@@ -1,0 +1,83 @@
+<div ng-controller="checkoutShoppingCartController">
+    <div style="width: 50%; margin-left: 25%;" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Choose delivery address</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="address in addresses">
+                    <input class="radioBtn" id="{{address.id}}" type="radio" name="address" value="{{address.id}}">
+                    <label for="{{address.id}}">
+                        {{address.receiverName}} - {{address.receiverPhone}}
+                        <br>
+                        {{address.street}}, floor: {{address.floor}}, {{address.city}}
+                    </label>
+                    <div style="margin-left: 90%;" class="addressButtons">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="width: 50%; margin-left: 25%;" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Your email address</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    {{user.email}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div style="width: 50%; margin-left: 25%;" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">How would you like to pay</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <input class="radioBtn" id="cash" type="radio" name="payingOption" value="cash">
+                    <label for="cash">Cash </label>
+                </li>
+                <li class="list-group-item">
+                    <input class="radioBtn" id="epay" type="radio" name="payingOption" value="epay">
+                    <label for="epay">ePay.bg </label>
+                </li>
+                <li class="list-group-item">
+                    <input class="radioBtn" id="creditCard" type="radio" name="payingOption" value="creditCard">
+                    <label for="creditCard">Credit card</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div style="width: 50%; margin-left: 25%;" class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Information about your order</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group" ng-repeat="product in products">
+                <li class="list-group-item"> {{product.quantity}} x {{product.name}} ${{getSubTotal(product.price,
+                    product.quantity, product.discount)}}
+                </li>
+            </ul>
+            <ul id="totalSumOfOrder">Total: ${{getTotal()}}</ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <a style="margin-left: 25%" href="#shoppingCart" class="btn btn-warning">
+                <i class="fa fa-angle-left"></i> Return to shopping cart</a>
+        </div>
+        <div class="col-md-6">
+            <a style="margin-left: 50%; color: white" ng-click="makeOrder()" class="btn btn-success">
+                Make order <i class="fa fa-angle-right"></i></a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+ALTER TABLE `emag`.`comments`
+ADD COLUMN `creation_date` VARCHAR(20) NOT NULL AFTER `stars`;

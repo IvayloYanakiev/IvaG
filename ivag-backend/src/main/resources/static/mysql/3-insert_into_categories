@@ -1,0 +1,109 @@
+INSERT INTO main_type (name) VALUES ('Phones, Tablets and Laptops');
+INSERT INTO main_type (name) VALUES ('Computers and Peripheral equipment');
+INSERT INTO main_type (name) VALUES ('TV, Electronics and Gaming');
+INSERT INTO main_type (name) VALUES ('Big electronics');
+INSERT INTO main_type (name) VALUES ('Small electronics');
+INSERT INTO main_type (name) VALUES ('Fashion');
+INSERT INTO main_type (name) VALUES ('Health and Beauty');
+INSERT INTO main_type (name) VALUES ('Home, Garden and Petshop');
+INSERT INTO main_type (name) VALUES ('Books, Office and Presents');
+INSERT INTO main_type (name) VALUES ('Toys and Kids items');
+INSERT INTO main_type (name) VALUES ('Sport and free time');
+INSERT INTO main_type (name) VALUES ('Insurance and auto');
+
+RENAME TABLE type TO middle_type;
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Mobile phones and Accessories', 1);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Tablets and Accessories', 1);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Laptops and Accessories', 1);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Computers and Monitors', 2);
+INSERT INTO middle_type (name, main_type_id) VALUES ('PC components', 2);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Software', 2);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Peripheral equipment',2);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Printers and Scanners', 2);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Wireless and Security systems', 2);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('TV', 3);
+INSERT INTO middle_type (name, main_type_id) VALUES ('TV accessories', 3);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Video projectors and screens', 3);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Home theater systems', 3);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Electronics', 3);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Gaming consoles and Games', 3);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Photo and Video', 3);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Photo and Video accessories', 3);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Refrigerators', 4);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Washing machines and Dryers', 4);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Dishwashers', 4);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Cooking stoves and Microwaves', 4);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Boilers, Air conditioners and Heating devices', 4);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Vacuum cleaners and Irons', 5);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Coffee machines and Juicers', 5);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Kitchen appliances', 5);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Women\'s purses and Accessories', 6);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Women\'s shoes', 6);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Women\'s clothing', 6);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Men\'s accessories', 6);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Men\'s shoes', 6);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Men\'s clothing', 6);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Kids\' accessories', 6);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Kids\' shoes', 6);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Kids\' clothing', 6);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Accessories and Devices for personal care', 7);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Oral hygiene', 7);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Perfumes', 7);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Make up and manicure', 7);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Health', 7);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Cosmetics and Products for personal care', 7);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Furnitures and Mattresses', 8);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Home textiles', 8);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Cooking and Serving', 8);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Cleaning and Maintenance', 8);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Everyday products', 8);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Garden', 8);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Decoration', 8);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Pet\'s food', 8);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Pet\'s accessories', 8);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Online bookstore', 9);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Movies', 9);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Music', 9);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Office', 9);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Books', 9);
+INSERT INTO middle_type (name, main_type_id) VALUES ('School supplies', 9);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Diapers and Accessories', 10);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Baby food and Accessories', 10);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Care and Hygiene', 10);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Baby strollers', 10);
+INSERT INTO middle_type (name, main_type_id) VALUES ('For kid\'s room', 10);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Maternity and Pregnancy', 10);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Games and Toys', 10);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Outdoor games', 10);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Educational games', 10);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Fitness and Food supplements', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Team sports', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Suitcases and Traveling bags', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Free time', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Tennis, Badminton and Table tennis', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Water sports', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Bicycles, Equipment and Accessories', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Rollers and Skateboards', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Camping', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Hunting and Fishing', 11);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Sport\'s clothing', 11);
+
+INSERT INTO middle_type (name, main_type_id) VALUES ('Tires', 12);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Auto electronics', 12);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Electric vehicles', 12);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Insurances', 12);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Electrical equipment', 12);
+INSERT INTO middle_type (name, main_type_id) VALUES ('For construction', 12);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Garden equipment', 12);
+INSERT INTO middle_type (name, main_type_id) VALUES ('Lighting', 12);

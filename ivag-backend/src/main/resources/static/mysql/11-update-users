@@ -1,0 +1,3 @@
+ALTER TABLE `emag`.`users`
+ADD COLUMN `isActivated` INT(1) NULL DEFAULT 0 AFTER `isAdmin`,
+ADD COLUMN `token` VARCHAR(45) NULL DEFAULT 'null' AFTER `isActivated`;
