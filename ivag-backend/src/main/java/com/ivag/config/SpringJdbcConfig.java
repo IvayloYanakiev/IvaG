@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 public class SpringJdbcConfig {
 
     private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final String JDBC_URL = "jdbc:mysql://localhost:3306/emag";
+    private final String JDBC_URL = "jdbc:mysql://localhost:3306/ivag";
     private final String JDBC_USERNAME = "root";
     private final String JDBC_PASS = "950301";
 

@@ -40,7 +40,7 @@ public class Constants {
     public static final String ACTIVATE_ACCOUNT = "Activate account";
     public static final String LINK_FRONTEND_ACTIVATE_ACCOUNT = "To activate your account please click on the link below: \n http://localhost:63342/ivag-frontend/app/index.html?_ijt=ov0j7am0hja4huk7t57pv0mj0u#/activateAccount/";
     public static final String ACTIVATION_SUCCESS = "Activation success";
-    public static final String TOTAL_SUM_OF_ORDER = "\nTotal sum of your order is: $";
-
+    public static final String TOTAL_SUM_OF_ORDER_DOLARS = "\nTotal sum of your order is: $";
+    public static final String TOTAL_SUM_OF_ORDER_BITCOINS = "\nTotal sum of your order is: Ƀ";
 
 }
